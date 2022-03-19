@@ -9,7 +9,7 @@ const TracksSchema = new mongoose.Schema(
     
     
         album:{
-            type:Number
+            type:String
         },
     
     
@@ -17,7 +17,7 @@ const TracksSchema = new mongoose.Schema(
             type:String,
 
            validate: {
-         validator: (res)=>{
+         validator: (req)=>{
               return true
            },
            message: "ERROR_URL"
@@ -52,7 +52,7 @@ const TracksSchema = new mongoose.Schema(
           
     },
     {
-        timestamp:true,
+        timestamps:true,
         versionKey: false
     }
    
