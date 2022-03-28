@@ -1,6 +1,8 @@
+const { all } = require('express/lib/application');
 const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
 
-const TracksSchema = new mongoose.Schema(
+const TracksScheme = new mongoose.Schema(
     {
        name:{
            type: String,
@@ -59,4 +61,6 @@ const TracksSchema = new mongoose.Schema(
 );
 
 
- module.exports = mongoose.model("tracks",TracksSchema)
+TracksScheme.plugin(mongooseDelete, {overrideMethods: "all"}); //para que sobreescriba los metodos nativos
+
+ module.exports = mongoose.model("tracks",TracksScheme)

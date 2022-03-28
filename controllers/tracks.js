@@ -1,28 +1,76 @@
 
-
+const {matchedData} = require('express-validator')
 const {tracksModels} = require('../models')
+const { handleHttpError } = require('../utils/handleError')
 
+const getItem = async (req,res)=>{
+  try {
+    req = matchedData(req)  
+
+    const {id} = req
+    const data = await tracksModels.findById(id)
+    res.send({data})
+
+  } catch (error) {
+    handleHttpError(res, 'Error_Get_Item')
+  }
+
+}
 const getItems = async (req,res)=>{
-    const data = await tracksModels.find({})
-
-    res.send({data})
-
+  try {
+        const data = await tracksModels.find({})
+        res.send({data})
+        
+    } catch (error) {
+        handleHttpError(res, 'Error_Get_Items')
+    }
 }
-const getItem = (req,res)=>{
 
 
-}
+
 const createItem = async (req,res)=>{
-    const {body} = req
-    console.log(body)
-    const data = await tracksModels.create(body)
-    res.send({data})
+   try {
+    const body = matchedData(req) // limpia la data que viene del body
+     const data = await tracksModels.create(body)
+      res.send({data})
+        
+    } catch (error) {
+      console.log(error)
+        handleHttpError(res, 'Error_Create_Items')
+    }
+    }
+
+
+
+const updateItems = async (req,res)=>{
+
+    try {
+      
+        const {id,...body} = matchedData(req)
+
+         const data = await tracksModels.findOneAndUpdate(id, body)
+          res.send({data})
+            
+        } catch (error) {
+            handleHttpError(res, 'Error_Update_Items')
+        }
+
+
+}
+const deleteItem = async (req,res)=>{
+
+    try {
+        req = matchedData(req)  
+    
+        const {id} = req
+        const data = await tracksModels.delete({_id:id})
+        res.send({data})
+    
+      } catch (error) {
+        console.log(error)
+        handleHttpError(res, 'Error_Delete_Item')
+}
 }
 
 
-
-const updateItems = (req,res)=>{}
-const deleteItems = (req,res)=>{}
-
-
-module.exports ={ getItems,getItem,createItem,updateItems,deleteItems}
+module.exports = { getItems, getItem, createItem, updateItems, deleteItem };
