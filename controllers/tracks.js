@@ -18,8 +18,10 @@ const getItem = async (req,res)=>{
 }
 const getItems = async (req,res)=>{
   try {
+
+        const user = req.user //para saber que usuario es el que esta consumiendo en ese momento esta ruta
         const data = await tracksModels.find({})
-        res.send({data})
+        res.send({data , user})
         
     } catch (error) {
         handleHttpError(res, 'Error_Get_Items')

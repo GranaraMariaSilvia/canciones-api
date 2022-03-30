@@ -1,6 +1,6 @@
 const express= require('express');
 const router = express.Router();
-const customHeader =require('../middleware/customHeader');
+const {authMiddleware} =require('../middleware/session');
 const {validatorCreateItem,validatorGetItem } = require('../validator/tracks')
 const { getItems,createItem,getItem,updateItems,deleteItem } = require('../controllers/tracks');
 
@@ -9,7 +9,7 @@ const { getItems,createItem,getItem,updateItems,deleteItem } = require('../contr
 
 
 //todos los items
-router.get('/',getItems);
+router.get('/', authMiddleware, getItems);
 
 //detalle de un item
 router.get('/:id', validatorGetItem,
