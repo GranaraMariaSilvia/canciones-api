@@ -26,10 +26,10 @@ const UserScheme = new mongoose.Schema(
             select: false
         },
         
-       role:{
-           type:["user", "admin"],
-           default: "user"
-       }
+        role: {
+            type: ["user", "admin"],
+            default: "user",
+          },
     },
     {
         timestamps:true,
