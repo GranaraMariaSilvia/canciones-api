@@ -20,7 +20,7 @@ router.get('/:id',authMiddleware, validatorGetItem,
 //crear un registro
 router.post("/",
 authMiddleware,
-checkRol(["admin"]), 
+checkRol(["admin","user"]), 
  validatorCreateItem, 
     createItem
 );
