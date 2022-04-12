@@ -2,7 +2,7 @@ require("dotenv").config()
 const express = require ("express");
 const cors = require("cors");
 const dbConnect = require('./config/mongo');
-const loggerStream = require('./utils/handleLogger')
+//const loggerStream = require('./utils/handleLogger')
 const app = express();
 const morganBody = require('morgan-body');
 
@@ -21,7 +21,7 @@ app.use(express.static("storage"));
 
 morganBody(app, {
     noColors:true,
-    stream: loggerStream, 
+   // stream: loggerStream, 
     skip: function (req,res){
        return res.statusCode < 400
     }

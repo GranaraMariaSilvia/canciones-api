@@ -1,19 +1,19 @@
 
-const {IncomingWebhook} = require('@slack/webhook');
+//const {IncomingWebhook} = require('@slack/webhook');
 
 
-const webHook = new IncomingWebhook(process.env.SLACK_WEBHOOk)
+//const webHook = new IncomingWebhook(process.env.SLACK_WEBHOOk)
 
 
-const loggerStream = {
+//const loggerStream = {
 
-    write: message => {
-        webHook.send({
-            text: message
-        });
-        console.log('capturando el LOG', message)
+  //  write: message => {
+      //  webHook.send({
+        //    text: message
+      //  });
+      //  console.log('capturando el LOG', message)
       
-    },
-  };
+  //  },
+ // };
 
-  module.exports = loggerStream
+  //module.exports = loggerStream
